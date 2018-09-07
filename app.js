@@ -1,103 +1,99 @@
-var first_digit = document.getElementById("first_digit");
-var second_digit = document.getElementById("second_digit");
-var third_digit = document.getElementById("third_digit");
-var buttons = document.getElementsByClassName("btn");
-var user_number = 0;
-var group_number = 0;
-var other_number = 0;
+let firstDigit = document.getElementById("first_digit");
+let secondDigit = document.getElementById("second_digit");
+let thirdDigit = document.getElementById("third_digit");
+let buttons = document.getElementsByClassName("btn");
+let userNumber = 0;
+let groupNumber = 0;
+let otherNumber = 0;
+let clickedColor = '#c83850';
 
-for(var i=0; i < buttons.length; i++) {
+for(let i=0; i < buttons.length; i++) {
 	buttons[i].addEventListener("click", function(event) {
-		if(this.id=="user-r"){
-			if(!this.clicked) {
-				user_number += 4;
-				this.clicked = true;
-				updateDisplay();
+		if(!this.clicked) {
+			switch(this.id) {
+				case "user-r":
+					userNumber += 4;
+					this.clicked = true;
+					buttons[0].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "user-w":
+					userNumber += 2;
+					this.clicked = true;
+					buttons[1].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "user-x":
+					userNumber += 1;
+					this.clicked = true;
+					buttons[2].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "group-r":
+					groupNumber += 4;
+					this.clicked = true;
+					buttons[3].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "group-w":
+					groupNumber += 2;
+					this.clicked = true;
+					buttons[4].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "group-x":
+					groupNumber += 1;
+					this.clicked = true;
+					buttons[5].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "other-r":
+					otherNumber += 4;
+					this.clicked = true;
+					buttons[6].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "other-w":
+					otherNumber += 2;
+					this.clicked = true;
+					buttons[7].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "other-x":
+					otherNumber += 1;
+					this.clicked = true;
+					buttons[8].style.backgroundColor = clickedColor;
+					updateDisplay();
+					break;
+				case "clear":
+					clearDisplay();
+					break;
 			}
-		}
-		if(this.id=="user-w"){
-			if(!this.clicked) {
-				user_number += 2;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="user-x") {
-			if(!this.clicked) {
-				user_number += 1;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="group-r"){
-			if(!this.clicked) {
-				group_number += 4;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="group-w"){
-			if(!this.clicked) {
-				group_number += 2;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="group-x") {
-			if(!this.clicked) {
-				group_number += 1;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="other-r"){
-			if(!this.clicked) {
-				other_number += 4;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="other-w"){
-			if(!this.clicked) {
-				other_number += 2;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="other-x") {
-			if(!this.clicked) {
-				other_number += 1;
-				this.clicked = true;
-				updateDisplay();
-			}
-		}
-		if(this.id=="clear") {
-			clearDisplay();
 		}
 	}, false);
 }
 
-
 function updateDisplay() {
-	console.log(user_number + " " + group_number + " " + other_number);
-	first_digit.textContent = user_number;
-	second_digit.textContent = group_number;
-	third_digit.textContent = other_number;
-	if(user_number == 0) {
-		first_digit.textContent = "-";
+	firstDigit.textContent = userNumber;
+	secondDigit.textContent = groupNumber;
+	thirdDigit.textContent = otherNumber;
+	if(userNumber == 0) {
+		firstDigit.textContent = "-";
 	}
-	if(group_number == 0) {
-		second_digit.textContent = "-";
+	if(groupNumber == 0) {
+		secondDigit.textContent = "-";
 	}
-	if(other_number == 0) {
-		third_digit.textContent = "-";
+	if(otherNumber == 0) {
+		thirdDigit.textContent = "-";
 	}
 }
 
 function clearDisplay() {
-	for (var i=0; i<buttons.length; i++) {
+	const btnColors = ['#41a632', '#3a932d', '#338127', '#2ba5a5', '#269393', '#228080', '#d18c33', '#ba7d2e', '#a36d28'];
+	for (let i=0; i<buttons.length; i++) {
 		buttons[i].clicked = false;
+		buttons[i].style.backgroundColor = btnColors[i];
 	}
-	user_number = group_number = other_number = 0;
+	userNumber = groupNumber = otherNumber = 0;
 	updateDisplay();
 }
